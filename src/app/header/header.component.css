@@ -1,0 +1,9 @@
+.top-score-view,.score-view{
+    padding-right: 15px;
+    margin-top: 7px;
+    text-align: center;
+}
+.scores-view{
+    display:flex;
+    align-items: center;
+}

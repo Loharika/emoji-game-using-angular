@@ -1,0 +1,7 @@
+<div class="row">
+    <ul class="col-xs emojis-list-view">
+        <emoji-card *ngFor="let emojiEl of emojis;let i=index" 
+        [emoji]="emojiEl" [id]="i"></emoji-card>
+        
+    </ul>
+</div>

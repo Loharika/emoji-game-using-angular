@@ -1,0 +1,5 @@
+.emojis-list-view{
+    display: flex;
+    flex-direction: space-around;
+    flex-wrap: wrap;
+}

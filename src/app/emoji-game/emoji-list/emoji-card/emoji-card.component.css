@@ -1,0 +1,14 @@
+li{
+    list-style: none;
+    
+}
+.emoji-card-view{
+    margin:15px 15px;
+    padding: 15px 15px;
+    border:2px solid grey;
+    border-radius: 10px;
+}
+.emoji-img{
+    width:260px;
+    height:260px;
+}
