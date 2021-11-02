@@ -12,14 +12,21 @@ import * as fromApp from '../store/app.reducer'
 export class HeaderComponent implements OnInit,OnDestroy {
   score:number
   topScore:number
+  gameOver:boolean
+  displayTopScore:boolean
+  displayScore:boolean
+  gameStatus:string
   constructor(private emojiService:EmojiService){
     this.score=this.emojiService.score
     this.topScore=this.emojiService.topScore
+    this.gameOver=this.emojiService.gameOver
+    this.gameStatus=this.emojiService.gameStatus
+    this.displayTopScore=!this.gameOver || (this.gameOver && this.gameStatus!=='WON')
 
   }
 
-  ngOnInit(){
-     console.log(this.score)
+  ngOnInit(){ 
+
   }
   ngOnDestroy(){
      

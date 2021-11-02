@@ -1,0 +1,7 @@
+<game-won-page *ngIf="gameStatus === 'WON';else drawLose" [topScore]="topScore"></game-won-page>
+<ng-template #drawLose>
+    <game-draw-page *ngIf="gameStatus === 'DRAW';else lose" [score]="score"></game-draw-page>
+</ng-template>
+<ng-template #lose>
+    <game-lose-page *ngIf="gameStatus === 'LOSE';" [score]="score"></game-lose-page>
+</ng-template>

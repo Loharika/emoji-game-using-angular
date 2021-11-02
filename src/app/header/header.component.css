@@ -1,9 +1,19 @@
-.top-score-view,.score-view{
-    padding-right: 15px;
-    margin-top: 7px;
-    text-align: center;
-}
-.scores-view{
-    display:flex;
-    align-items: center;
-}
+@media screen and (max-width: 768px) {
+    .mobile-scores-view{
+      display: flex;
+    }
+    li{
+        list-style:none;
+    }
+    
+  }
+@media screen and (min-width: 767px) {
+    .mobile-scores-view{
+      display: none;
+    }
+    .top-score-view,.score-view{
+        padding-right: 15px;
+        margin-top: 7px;
+        text-align: center;
+    }
+  }

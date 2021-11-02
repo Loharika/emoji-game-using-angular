@@ -76,11 +76,14 @@ export class EmojiService implements OnInit{
   public emojis:EmojiModel[] 
   public score:number
   public topScore:number
-
+    public gameStatus:string  //WON LOSE DRAW
+    public gameOver:boolean
     constructor(){
         this.emojis=[...data.map(emoji=>new EmojiModel(emoji.id,emoji.imgUrl,emoji.checked))]
         this.score=0
-        this.topScore=0
+        this.topScore=1000
+        this.gameOver=false
+        this.gameStatus='WON' //WON LOSE DRAW
     }
     ngOnInit(){
         
