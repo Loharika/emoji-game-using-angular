@@ -16,5 +16,7 @@ export class EmojiListComponent implements OnInit{
     ngOnInit(){
         this.emojis=this.emojiService.emojis
     }
+
+    
     
 }

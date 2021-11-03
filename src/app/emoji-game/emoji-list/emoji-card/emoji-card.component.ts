@@ -16,17 +16,9 @@ export class EmojiCardComponent {
   ngOnInit() {
   }
 
-  onUpdateTodoCheckbox(index:number,event){
-    // this.todoService.updateTodoCheckbox(index,event.target.checked)
+  onClickEmoji(id:number ){
+    this.emojiService.updateEmojiStatus(id)
 
   }
 
-  onUpdateTodoTitle(index,event){
-    // console.log(event.target.value)
-    // this.todoService.updateTodoTitle(index,event.target.value)
-  }
-
-  onDeleteTodo(index){
-    // this.todoService.deleteTodo(index)
-  }
 }

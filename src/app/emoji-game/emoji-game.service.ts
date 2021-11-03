@@ -88,6 +88,32 @@ export class EmojiService implements OnInit{
     ngOnInit(){
         
     }
+    shuffleArray=(array)=>{
+        for (var i = array.length - 1; i > 0; i--) {
+
+            // Generate random number
+            var j = Math.floor(Math.random() * (i + 1));
+
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+
+        return array;
+    }
+
+    updateEmojiStatus=(id:number)=>{
+        const clickedEmoji=this.emojis.find(emoji=>emoji.id===id)
+        const clickedEmojiIndex=this.emojis.findIndex(emoji=>emoji.id===id)
+        if(!clickedEmoji.checked){
+            const updatedEmoji=new EmojiModel(id,clickedEmoji.imgUrl,true)
+            this.emojis.splice(clickedEmojiIndex,1,updatedEmoji)
+            this.shuffleArray(this.emojis)
+        }
+        else{
+            console.log("Game Over")
+        }
+    }
    
 
 }
