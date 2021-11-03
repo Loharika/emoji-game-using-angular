@@ -72,7 +72,8 @@ export class EmojiService implements OnInit{
   emojissChanged =new Subject<EmojiModel[]>();
   scoreChanged= new Subject<number>()
   topScoreCanged=new Subject<number>()
-
+    gameStatusChanged=new Subject<boolean>()
+    gameOverChanged=new Subject<boolean>()
   public emojis:EmojiModel[] 
   public score:number
   public topScore:number
@@ -88,17 +89,14 @@ export class EmojiService implements OnInit{
     ngOnInit(){
         
     }
-    shuffleArray=(array)=>{
+    shuffleEmojis=(array)=>{
         for (var i = array.length - 1; i > 0; i--) {
-
-            // Generate random number
             var j = Math.floor(Math.random() * (i + 1));
 
             var temp = array[i];
             array[i] = array[j];
             array[j] = temp;
         }
-
         return array;
     }
 
@@ -108,12 +106,46 @@ export class EmojiService implements OnInit{
         if(!clickedEmoji.checked){
             const updatedEmoji=new EmojiModel(id,clickedEmoji.imgUrl,true)
             this.emojis.splice(clickedEmojiIndex,1,updatedEmoji)
-            this.shuffleArray(this.emojis)
+            this.shuffleEmojis(this.emojis)
+            this.incrementScore()
         }
-        else{
-            console.log("Game Over")
+        else{ 
+            this.gameOver=true
+            this.gameOverChanged.next(this.gameOver)
+            console.log(this.gameOver)
+            this.updateGameStatus()
         }
     }
+
+    updateGameStatus=()=>{
+        if(this.score>this.topScore){
+            this.gameStatus='WON'
+            this.updateTopScore()
+        }
+        else{
+            
+            if(this.score===this.topScore){
+                this.gameStatus='DRAW'
+            }
+            else {
+                this.gameStatus='LOSE'
+            }
+            this.intializeScore()
+        }
+        
+    }
+
+    incrementScore=()=>{
+        this.score+=1
+    }
    
+    intializeScore=()=>{
+        this.score=0
+    }
+
+    updateTopScore=()=>{
+        this.topScore=this.score
+        this.intializeScore()
+    }
 
 }
