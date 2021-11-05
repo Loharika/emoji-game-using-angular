@@ -2,7 +2,9 @@ import { EventEmitter, Injectable, OnInit } from '@angular/core';
 
 import { Subject } from 'rxjs/Subject';
 import { EmojiModel } from './emoji.model';
-
+import * as fromApp from '../app.reducer'
+import * as EmojiGameActions from './store/emoji-game.actions'
+import { Store } from '@ngrx/store';
 const data=[
     {
         id:0,
@@ -74,12 +76,12 @@ export class EmojiService implements OnInit{
   topScoreCanged=new Subject<number>()
     gameStatusChanged=new Subject<boolean>()
     gameOverChanged=new Subject<boolean>()
-  public emojis:EmojiModel[] 
-  public score:number
-  public topScore:number
+    public emojis:EmojiModel[] 
+    public score:number
+    public topScore:number
     public gameStatus:string  //WON LOSE DRAW
     public gameOver:boolean
-    constructor(){
+    constructor(private store:Store<fromApp.AppState>){
         this.emojis=[...data.map(emoji=>new EmojiModel(emoji.id,emoji.imgUrl,emoji.checked))]
         this.score=0
         this.topScore=1000
@@ -101,6 +103,8 @@ export class EmojiService implements OnInit{
     }
 
     updateEmojiStatus=(id:number)=>{
+         this.store.dispatch(new EmojiGameActions.EmojiStatus({id:id}))
+         
         const clickedEmoji=this.emojis.find(emoji=>emoji.id===id)
         const clickedEmojiIndex=this.emojis.findIndex(emoji=>emoji.id===id)
         if(!clickedEmoji.checked){
